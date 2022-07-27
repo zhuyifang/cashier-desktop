@@ -1,0 +1,26 @@
+{
+  "csrf": "api/index/csrf&_mall_id=1",
+  "login": {
+    "admin": "api/master/passport/login",
+    "teller": "plugin/teller/web/passport/login"
+  },
+  "mall": {
+    "list": "api/master/mall/index",
+    "setting": "api/master/mall/setting",
+    "sales": "plugin/teller/mall/sales/index"
+  },
+  "goods": {
+    "list": "plugin/teller/web/goods/index",
+    "detail": "plugin/teller/web/goods/detail"
+  },
+  "member": {
+    "index": "plugin/teller/web/member/index"
+  },
+
+  "order": {
+    "preview": "plugin/teller/web/order/preview",
+    "coupon": "plugin/teller/web/order/coupon",
+    "submit": "plugin/teller/web/order/submit",
+    "payStatus": "plugin/teller/web/order/pay-data"
+  }
+}

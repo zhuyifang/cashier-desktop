@@ -7,8 +7,13 @@
       <div class="col-4 login-right q-pa-md">
         <h4 class="text-center">{{ mall.id ? '收银员' : '管理员' }}登录</h4>
         <q-form class="q-gutter-y-md column">
-          <q-input ref="username" autocomplete='username' outlined v-model="username" label="用户名"/>
+          <q-input ref="username" @keydown.enter="login" autocomplete='username' outlined v-model="username" label="用户名"/>
           <q-input ref="password" @keydown.enter="login" autocomplete='current-password' outlined type="password" v-model="password" label="密码"/>
+          <q-input ref="pic_captcha" v-if="username && password" @keydown.enter="login" autocomplete='current-password' outlined type="text" v-model="picCaptcha" label="验证码">
+            <template v-slot:append>
+                <q-img style="width: 100px;cursor: pointer" @click="refreshPicCaptcha" :src="picCaptchaUrl" />
+            </template>
+          </q-input>
           <div class="row">
             <div class="col"><span class="link">忘记密码?</span></div>
             <div class="col text-right"><span class="link">免费注册</span></div>
@@ -33,13 +38,18 @@ export default {
   data() {
     return {
       username: 'shop-admin',
-      password: '123456'
+      password: '123456',
+      picCaptcha:'',
+      picCaptchaUrl:''
     }
   },
   created() {
-
   },
   methods: {
+    async refreshPicCaptcha(){
+      let {url} = await api.getPicCaptcha(this.username)
+      this.picCaptchaUrl = url+'&platform=desktop'
+    },
     async login() {
       if(!this.username){
         this.$q.notify({type: 'negative', message: '请输入账号', timeout: 1000})
@@ -49,10 +59,15 @@ export default {
         this.$q.notify({type: 'negative', message: '请输入密码', timeout: 1000})
         return this.$refs.password.focus()
       }
+      if(!this.picCaptcha){
+        this.$q.notify({type: 'negative', message: '请输入验证码', timeout: 1000})
+        return this.$refs.pic_captcha.focus()
+      }
       let resUser = await api.login({
         mallId: this.mall.id?base64.encode(this.mall.id):null ,
         username: this.username,
-        password: this.password
+        password: this.password,
+        captcha:this.picCaptcha
       })
       console.log(resUser)
       //

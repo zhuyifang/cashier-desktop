@@ -10,8 +10,9 @@ import {LocalStorage} from "quasar";
 // "export default () => {}" function below (which runs individually
 // for each client)
 const http = axios.create({
+  baseURL:'https://cashier.qicuo.com',
   headers: {
-    'X-App-Platform': 'mobile',
+    'X-App-Platform': 'desktop',
     'X-Requested-With': 'XMLHttpRequest'
   }
 })
@@ -20,9 +21,9 @@ http.interceptors.request.use(config => {
   if (user && user.accessToken) {
     config.headers['X-Access-Token'] = user.accessToken
   }
-  if (!config.url.startsWith('http')) {
-    config.url = 'http://cashier.qicuo.com/web/index.php?r=' + config.url
-  }
+  // if (!config.url.startsWith('http')) {
+  //   config.url = 'https://cashier.qicuo.com/web/index.php' + config.url
+  // }
   return config
 }, err => {
   return Promise.reject(err)
@@ -30,6 +31,7 @@ http.interceptors.request.use(config => {
 
 const formHttp = axios.create({
   headers: {
+    'X-App-Platform': 'desktop',
     'X-Requested-With': 'XMLHttpRequest',
     'content-type': 'application/x-www-form-urlencoded',
   }

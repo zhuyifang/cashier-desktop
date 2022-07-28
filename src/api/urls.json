@@ -1,6 +1,7 @@
 {
   "csrf": "api/index/csrf&_mall_id=1",
   "login": {
+    "picCaptcha": "site/pic-captcha",
     "admin": "api/master/passport/login",
     "teller": "plugin/teller/web/passport/login"
   },

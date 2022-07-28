@@ -60,7 +60,8 @@ class CreateWindow {
     this.mainWindow.loadURL(pagePath);
 
     if (this.$debug) {
-      session.defaultSession.loadExtension('/Users/yfzhu/Library/Application Support/Google/Chrome/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/6.1.4_0/').then();
+      console.log('加载Vue devTools')
+      session.defaultSession.loadExtension('/Users/yfzhu/Library/Application Support/Google/Chrome/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/6.2.1_5/').then();
       // if on DEV or Production with debug enabled
       this.mainWindow.webContents.openDevTools()
     } else {

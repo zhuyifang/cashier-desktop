@@ -1,6 +1,5 @@
 import urls from './urls.json'
 import {formHttp, http} from 'boot/axios'
-import base64 from "base-64";
 import {LocalStorage} from "quasar";
 
 class Api {
@@ -9,6 +8,17 @@ class Api {
 
   async getCsrf() {
     let {data} = await http.get(urls.csrf)
+    return data
+  }
+
+  async getPicCaptcha(username) {
+    let {data} = await http.get('web/index.php', {
+      params: {
+        r: urls.login.picCaptcha,
+        username: username,
+        refresh: true
+      }
+    })
     return data
   }
 

@@ -1,14 +1,12 @@
-# 轻松收银 (easy-cashier)
+# 轻松收银 (cashier-desktop)
 
-这是一个由 Quasar 驱动的项目.
 技术栈:
 Vue.js 3.0
 Quasar
-
-客户端(desktop):electron
+electron
 移动端:Cordova
 
-发布版本:Windows|Mac|Andriod|Ios
+发布版本:Windows|Mac
 
 功能列表
 ```
@@ -23,6 +21,7 @@ Quasar
   9.盘点\挂单\取单\入库\出库
   10.销售报表
   11.接入外卖平台
+  12.交接班
 ```
 ## Install the dependencies
 ```bash

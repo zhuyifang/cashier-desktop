@@ -8,6 +8,8 @@ electron
 
 发布版本:Windows|Mac
 
+<img width="1023" alt="WX20220814-044111@2x" src="https://user-images.githubusercontent.com/16346219/184510160-4ccc1ba2-34a6-4610-aaec-41a40c31c650.png">
+
 功能列表
 ```
   1.快捷键
